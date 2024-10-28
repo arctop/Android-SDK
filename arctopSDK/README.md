@@ -1,4 +1,4 @@
-# Arctop™ Software Development Kit (SDK)
+# Arctop™ Android Software Development Kit (SDK)
 
 Arctop's SDK repository contains everything you need to connect your application to Arctop’s services. 
 
