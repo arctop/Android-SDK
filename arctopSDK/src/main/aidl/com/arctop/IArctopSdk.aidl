@@ -75,6 +75,15 @@ interface IArctopSdk {
     * Device list is reported back via {@link IArctopSdkListener#onDeviceList(in Map deviceList)}
     */
     oneway void scanForDevices();
-
+    /**
+    * Logs the current user out of the system
+    */
     int logoutUser();
+
+    /**
+    * Begins a prediction session for the multiple predictions
+    * @param predictionsNames the prediction component's names / key to run
+    * @return int value from {@link ArctopSDK#ResponseCodes}
+    */
+    int startMultiplePredictionSession(in String[] predictionsNames);
 }
