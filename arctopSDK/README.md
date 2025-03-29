@@ -4,9 +4,9 @@ Arctop's SDK repository contains everything you need to connect your application
 
 ## Background
 
-Arctop is a software company that makes real-time cognition decoding technology. Arctop's software applies artificial intelligence to electric measurements of brain activity, translating people’s feelings, reactions, and intent into actionable data that empower applications with new capabilities. Since its founding in 2016, Arctop has worked to develop a cross-platform SDK that provides noninvasive brain-computer interface capabilities. The SDK is being developed continuously and is the result of  deep R&D, such as [this peer-reviewed study](https://www.frontiersin.org/articles/10.3389/fncom.2021.760561/full) published in _Frontiers in Computational Neuroscience_ where Arctop's SDK was used in a personalized audio application.
+Arctop is a software company that makes real-time cognition decoding technology. Arctop's software applies artificial intelligence to electric measurements of brain activity, translating people’s feelings, reactions, and intent into actionable data that empower applications with new capabilities. Since its founding in 2016, Arctop has worked to develop a cross-platform SDK that provides noninvasive brain-computer interface capabilities. The SDK is being developed continuously and is the result of deep R&D, such as [this peer-reviewed study](https://www.frontiersin.org/articles/10.3389/fncom.2021.760561/full) published in _Frontiers in Computational Neuroscience_ where Arctop's SDK was used in a personalized audio application.
 
-The current version of the Arctop SDK provides four unique cognition data streams: focus, enjoyment, flow, and sleep state. It also provides body data streams including eye blinks, heart rate, and heart rate variability. All data streams are provided in real-time, meaning applications receive new data points several times per second. 
+The current version of the Arctop SDK provides six unique cognition data streams: visual attention, auditory attention, focus, enjoyment, cognitive workload, and sleep state. It also provides body data streams including eye blinks, heart rate, and heart rate variability. All data streams are provided in real-time, meaning applications receive new data points several times per second. 
 
 In short, Arctop's SDK gives the ability to add new streams of personalized cognition data directly into applications.
 
@@ -20,9 +20,9 @@ Examples of how this data can be used include:
 * Developing novel headwear for gamers.
 * Creating adaptive audio applications that tailor sound to user mood.
 
-One way Arctop achieves its high performance analysis is by calibrating data processing models to each new user. This is done through a one-time 10-minute session in Arctop's mobile app that consists of a series of interactive tasks and questions. The calibration process is important since it allows Arctop's AI models of brain function to be individually customized to each user's unique brain data baseline and deliver personalized dynamics measures that are accurate. 
+One way Arctop achieves its high performance analysis is by calibrating data processing models to each new user. In order to receive the data stream for a specific metric, users must first complete a few games specifically designed for that model. Each metric's calibration is estimated to take fewer than five minutes and is available in Arctop's mobile app. When starting a new Arctop Session, data streams will automatically include any unlocked metrics that the user is calibrated for. The calibration process is important because it allows Arctop's AI models of brain function to be individually customized to each user's unique brain data baseline and deliver personalized dynamics measures that are accurate. 
 
-After the one-time calibration, real-time cognition metrics for endless usage are unlocked. For more information about calibration, see the section titled [Verify That a User Has Been Calibrated for Arctop](#2-verify-that-a-user-has-been-calibrated-for-arctop) within this file.
+After a metric's one-time calibration, its real-time cognition data is unlocked for endless usage. For more information about calibration, see the section titled [Verify That a User Has Been Calibrated for Arctop](#2-verify-that-a-user-has-been-calibrated-for-arctop) within this file.
 
 
 ## Installation
@@ -83,10 +83,10 @@ The SDK contains the following components.
 ###### Mobile App
 To use the Arctop SDK, you'll need to install the Arctop  app on your mobile device. The Arctop app is available on both the App Store (iOS) and Google Play (Android) and can be found by searching "Arctop".
 
-After downloading the mobile app, use the Sign Up screen to create an account. Follow instructions in the _Supplementary User Instructions_ document provided to you via email for guidance on how to set up and use the mobile app for Arctop streaming.  
+After downloading the mobile app, use the Sign Up screen to create an account. Bluetooth permissions are required in order to connect to the EEG headwear device for Arctop calibrations and sessions. Push notification permissions are recommended to ensure users are informed of headwear and session status while using the Arctop app in the background. 
 
 ###### API Key
-You will also need to create an API key in order to use the Arctop SDK with your app. To do so, please submit a request via the Arctop DevKit form provided to you in the “Welcome” email. Feel free to contact us at support@arctop.com with any questions you may have.
+You will also need to create an API key in order to use the Arctop SDK with your app. To do so, please log into the online [Developer Portal](https://developer.arctop.com/sign-in) with the same credentials that you used to sign up for your in-app Arctop account. Once in the portal, navigate to the My Keys tab. Using the "Create New API Key" button, enter the details you'd like your API key to have and press Create. This key will automatically be enabled for use, and can be disabled whenever you need. Feel free to contact us at support@arctop.com with any questions you may have regarding your API keys.
 
 #### 2. Permissions
     
@@ -241,22 +241,19 @@ You can either listen to that request or check the login status again.
 
 #### 2. Verify That a User Has Been Calibrated for Arctop
 
-Before Arctop services can be used in any sessions, a user must complete calibration to generate their personal Arctop model. This is done via the Arctop mobile app. 
+Arctop currently offers the following cognitive metrics: visual attention, auditory attention, focus, enjoyment, cognitive workload, and sleep state. Except for sleep state, all of these require that users complete one-time calibrations within the Arctop mobile app before their data can be received. Each cognitive metric has its own gamified calibration that takes approximately 4 minutes to complete and only needs to be completed once per user. The focus metric is an exception, as it does not have its own calibration, but is instead unlocked automatically when both the visual attention and auditory attention calibrations have been completed. Each calibration process is important for Arctop’s software to learn individual users' unique patterns and tune its algorithms to be as accurate and robust as possible.
 
-Calibration takes approximately 10 minutes and only needs to be completed once per user. It consists of five short tasks (1-3 minutes each) and is performed while wearing a compatible headwear device to record brain signals throughout. At the end of each task, users are asked to rank their experience using slider scales and short questionnaires.
-
-This process is important for Arctop’s software to learn individual users' unique patterns and tune its algorithms to be as accurate and robust as possible. 
+Note: At this time, only the Arctop mobile app for iOS has individual calibrations for the above cognitive metrics. Users who calibrate with the Android mobile app will complete our previous 10-minute task that offers access to only three cognitive metrics in addition to sleep state: focus, enjoyment, and flow. The Arctop mobile app for Android will soon be updated to match the iOS mobile app, transitioning fully to shorter individual calibrations that allow users to more quickly record Arctop Sessions with the metrics that matter most to them. 
 
 The best practices users should follow when completing calibration are listed below.
 * Before starting the calibration session:
-    * Go to a quiet place where you will not be interrupted for 10 minutes.
+    * Go to a quiet place where you will not be interrupted for the duration of the calibration.
     * Unplug your headwear and mobile device from any chargers.
 * During calibration:
     * Try to move as little as possible. Headwear sensors are very sensitive to motion.
     * Do not eat, drink, or close your eyes. It is alright to blink normally.
     * Do not multitask or exit the Arctop app. Focus all of your efforts on the tasks presented. 
     * Complete the session within one sitting and in the same location. Moving around too much during calibration will impact results. 
-    * Answer all questions honestly, related to how you felt during the tasks. Calibration takes into account individual user feedback so answer as accurately as you can.
     
 To verify that a user is calibrated, call the service to check the status:
         
@@ -346,13 +343,13 @@ You can find the predictions in **ArctopSDK.Predictions**.
 
 At this point, your app will receive results via the **onValueChanged(String key,float value)** callback. 
 
-Users will also be provided with a post-session report and CSV files containing metric data, timestamps, and tags from their most recent session. Reports and CSV files for each session will automatically upload to their Developer Portal. Users can access their centralized session history within their Developer Portal at any time. 
+Users will also be provided with a post-session report and CSV files containing metric data, timestamps, and tags from their most recent session. Reports and CSV files for each session will automatically upload to the user's online Arctop Developer Portal, as well as the Sessions tab in their Arctop mobile app. Users can access their centralized session history within their Developer Portal or mobile app at any time. 
 
-Arctop's focus, enjoyment, flow, sleep, and eye blink metrics are derived exclusively from brain data, while heart rate and heart rate variability metrics are derived from body data. 
+Arctop's focus, enjoyment, visual attention, auditory attention, cognitive workload, sleep, and eye blink metrics are derived exclusively from brain data, while heart rate and heart rate variability metrics are derived from body data. Each session's CSV file will only include data from the metrics unlocked and captured in that session.
 
-Focus, enjoyment, and flow data is provided within the "...Cognition" CSV file. These values range from 0-100. The neutral point for each user is at 50, meaning that values above 50 reflect high levels of the measured quantity. For example, a 76 in focus is a high level of focus, while a 99 is nearly the highest focus that can be achieved. Values below 50 represent the opposite, meaning lack of focus or lack of enjoyment or lack of flow. For example, a 32 in focus is a lower level that reflects the user may not be paying much attention, while a 12 in enjoyment can mean the user dislikes the current experience. A value of 23 in flow indicates that the user is not in a high flow state. 
+Each cognitive metric's data will be displayed in its own CSV file. The values for most cognitive metrics provided (i.e. focus, enjoyment, visual attention, auditory attention, and cognitive workload) range from 0-100. The neutral point for each user is at 50, meaning that values above 50 reflect high levels of the measured quantity. For example, a 76 in focus is a high level of focus, while a 99 is nearly the highest focus that can be achieved. Values below 50 represent the opposite, meaning lack of that specific cognitive state. For example, a 32 in focus is a lower level that reflects the user may not be paying much attention, while a 12 in enjoyment can mean the user dislikes the current experience. A value of 23 in auditory attention indicates that the user may not be highly attentive to their auditory input at that time. 
 
-Sleep data is presented in binary values of 0 or 1 in the "Sleep Detection" column of the provided CSV data file ("...Sleep"). This information tells whether a user is detected to be asleep or awake at each timestamp, with the awake state indicated by a 0 and asleep state indicated by a 1. Focus, enjoyment, flow, and blink metrics are currently unavailable during sleep sessions. No report will be generated for sleep sessions at this time. Additional sleep metrics will be provided in a future version.
+Sleep data is presented in binary values of 0 or 1 in the "Sleep Detection" column of the provided CSV data file ("...Sleep"). This information tells whether a user is detected to be asleep or awake at each timestamp, with the awake state indicated by a 0 and asleep state indicated by a 1. Focus, enjoyment, cognitive workload, auditory attention, visual attention, and blink metrics are currently unavailable during sleep sessions. No report will be generated for sleep sessions at this time. Additional sleep metrics will be provided in a future version.
 
 Eye blink values are also recorded as a binary. The presence of a blink will be indicated by a value of 1 within the "...Blinks" CSV data file. Blink data for each individual eye will be provided in a future version.
 
